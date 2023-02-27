@@ -10,7 +10,7 @@ echo "Target OSNAME is $OSNAME"
 
 
 
-rm -rf "/srv/chroot/ubuntu-x64"
+sudo rm -rf "/srv/chroot/ubuntu-x64"
 apt update
 apt install -y qemu-user-static schroot debootstrap
 cp /usr/bin/qemu-x86_64-static /srv/chroot/ubuntu-x64/usr/bin/
@@ -18,7 +18,7 @@ debootstrap --arch amd64 --foreign focal /srv/chroot/ubuntu-x64
 chroot "/srv/chroot/ubuntu-x64/" /debootstrap/debootstrap --second-stage
 
 
-rm /etc/schroot/chroot.d/ubuntux64.conf
+rm -rf /etc/schroot/chroot.d/ubuntux64.conf
 tee -a /etc/schroot/chroot.d/ubuntux64.conf << EOF
 [ubuntu-x64]
 description=Ubuntu Focal x64 chroot
